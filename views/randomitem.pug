@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= title
+  - var image_names = ['S1.jpg', 'S2.jpg', 'S3.jpg', 'S4.jpg', 'S5.jpg'];
+
+  - for (let i = 0; i < 3; i++)
+    - let randomIndex = Math.floor(Math.random() * 5)
+    img(src=`/images/${image_names[randomIndex]}`, alt=`${image_names[randomIndex]}`, height=300, width=300)
