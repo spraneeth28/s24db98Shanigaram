@@ -12,27 +12,25 @@ var pickRouter = require('./routes/pick');
 var House = require('./models/house');
 // var costumeRouter = require('./routes/costume');
 
-async function recreateDB(){ 
-  // Delete everything   
-  await House.deleteMany(); 
-  let instance1 = new House({house_number: 102, type_of_house: 'Single-family detached house', location: 'Maryville'});
-  instance1.save().then(doc=>{     
-    console.log("First object saved")}   
-    ).catch(err=>{    
-       console.error(err)   
-      }); 
-  let instance2 = new House({house_number: 777, type_of_house: 'Duplex', location: 'Lincoln'});
-  instance2.save().then(doc=>{     
-    console.log("Second object saved")}   
-    ).catch(err=>{    
-       console.error(err)   
-      });
-  let instance3 = new House({house_number: 771, type_of_house:'Townhouse', location: 'Kansas City' });
-  instance3.save().then(doc=>{     
-    console.log("Third object saved")}   
-    ).catch(err=>{    
-       console.error(err)   
-      });
+async function recreateDB() {
+  try {
+    // Delete everything
+    await House.deleteMany();
+
+    let instance1 = new House({ house_number: 102, type_of_house: 'Single-family detached house', location: 'Maryville' });
+    await instance1.save();
+    console.log("First object saved");
+
+    let instance2 = new House({ house_number: 777, type_of_house: 'Duplex', location: 'Lincoln' });
+    await instance2.save();
+    console.log("Second object saved");
+
+    let instance3 = new House({ house_number: 771, type_of_house: 'Townhouse', location: 'Kansas City' });
+    await instance3.save();
+    console.log("Third object saved");
+  } catch (err) {
+    console.error(err);
+  }
 }
 let reseed = true; 
 if (reseed) {recreateDB();}
