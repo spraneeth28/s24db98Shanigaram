@@ -10,6 +10,7 @@ var houseRouter = require('./routes/house');
 var gridRouter = require('./routes/grid');
 var pickRouter = require('./routes/pick');
 var House = require('./models/house');
+var resourceRouter = require('./routes/resource');
 // var costumeRouter = require('./routes/costume');
 
 async function recreateDB() {
@@ -69,6 +70,7 @@ app.use('/users', usersRouter);
 app.use('/house', houseRouter);
 app.use('/grid' , gridRouter);
 app.use('/pick', pickRouter);
+app.use('/resource', resourceRouter);
 // app.use('/housem', houseModel);
 // app.use('/costume', costumeRouter);
 
