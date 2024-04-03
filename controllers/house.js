@@ -23,8 +23,21 @@ res.send('NOT IMPLEMENTED: house update PUT' + req.params.id);
 // List of all Houses
 exports.house_list = async function(req, res) {
     try{
-    theHouses = await House.find();
-    res.send(theHouses);
+    theHouse = await House.find();
+    res.send(theHouse);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
+
+    // VIEWS
+// Handle a show all view
+exports.house_view_all_Page = async function(req, res) {
+    try{
+    theHouse = await House.find();
+    res.render('house', { title: 'House Search Results', results: theHouse });
     }
     catch(err){
     res.status(500);
