@@ -166,6 +166,21 @@ exports.house_update_Page = async function(req, res) {
     }
     };
 
+    //Part 07 (12)
+// Handle a delete one view with id from query
+exports.house_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+    result = await House.findById(req.query.id)
+    res.render('housedelete', { title: 'House Delete', toShow:
+    result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+
     
 
     

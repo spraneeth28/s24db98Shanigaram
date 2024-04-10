@@ -1,0 +1,56 @@
+extends layout
+block content
+ h1= title
+ - let houseid = toShow._id
+ - let house_number = toShow.house_number
+ - let type_of_house = toShow.type_of_house
+ - let location = toShow.location
+ - let actionid = "/resource/house/" + houseid
+ script.
+    let scriptActionId = "#{actionid}"
+
+ div
+  div.row
+ div(class='houseAttr mr-3') House ID is:
+ div #{houseid} 
+ div.row
+ div(class='houseAttr mr-3') House Number is:
+ div #{house_number}
+ div.row
+ div(class='houseAttr mr-3') House Type is:
+ div #{type_of_house}
+ div.row
+ div(class='houseAttr mr-3') House Location is:
+ div #{location}
+
+    div(style="margin-top: 10px;")
+    button(class="btn btn-primary m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-danger m-2" onclick="cancel()") Cancel
+
+    script.
+      // Function to navigate back to the home page for the house collection
+      function cancel() {
+        window.location.href = '/house';
+      }
+
+      // Function to delete the house instance
+      function deleteOnid() {
+        const confirmDelete = confirm("Are you sure you want to delete this house?");
+        if (!confirmDelete) {
+          return; // Cancel the delete operation
+        }
+
+        // Delete the house
+        console.log("starting delete");
+        fetch(scriptActionId, {
+          method: 'DELETE'
+        }).then((resp) => {
+          return resp.json();
+        }).then((body) => {
+          alert("Delete succeeded");
+          window.location.href = '/house';
+        }).catch((error) => {
+          console.error("Delete failed", error);
+          alert("Delete failed: " + error);
+        });
+      }
