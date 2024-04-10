@@ -118,6 +118,40 @@ exports.house_delete = async function(req, res) {
     res.send(`{"error": Error deleting ${err}}`);
     }
     };
+
+
+    //Part - 4 (12)
+
+    // Handle a show one view with id specified by query
+exports.house_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+    result = await House.findById(req ? req.query.id : req['query']['id'])
+    res.render('housedetail',
+    { title: 'House Detail', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+
+    //Part -5 (12)
+    // Handle building the view for creating a costume.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.house_create_Page = function(req, res) {
+    console.log("create view")
+    try{
+    res.render('housecreate', { title: 'House Create'});
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+    
+
     
 
     
