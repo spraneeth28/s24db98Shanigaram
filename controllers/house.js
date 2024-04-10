@@ -151,6 +151,20 @@ exports.house_create_Page = function(req, res) {
     }
     };
     
+    // Part  06 (12)
+    // Handle building the view for updating a costume.
+    // query provides the id
+exports.house_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+    let result = await House.findById(req.query.id)
+    res.render('houseupdate', { title: 'House Update', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
 
     
 
