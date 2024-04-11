@@ -1,20 +1,28 @@
 extends layout
+
 block content
- h1= title
- - let houseid = toShow._id
- - let house_number = toShow.house_number
- - let type_of_house = toShow.type_of_house
- - let location = toShow.location
- div
-  div.row
- div(class='houseAttr mr-3') House ID is:
- div #{houseid} 
- div.row
- div(class='houseAttr mr-3') House Number is:
- div #{house_number}
- div.row
- div(class='houseAttr mr-3') House Type is:
- div #{type_of_house}
- div.row
- div(class='houseAttr mr-3') House Location is:
- div #{location}
+  h1= title
+  if (toShow == null)
+    h2 No instance to detail
+  else
+    - let houseid = toShow._id
+    - let house_number = toShow.house_number
+    - let type_of_house = toShow.type_of_house
+    - let location = toShow.location
+
+    div
+      div.row
+        div(class='houseAttr mr-3') House ID is:
+        div #{houseid}
+
+      div.row
+        div(class='houseAttr mr-3') House number is:
+        div #{house_number}
+
+      div.row
+        div(class='houseAttr mr-3') House type is:
+        div #{type_of_house}
+
+      div.row
+        div(class='houseAttr mr-3') House Location is:
+        div #{location}

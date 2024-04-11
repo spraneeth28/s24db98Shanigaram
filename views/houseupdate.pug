@@ -2,6 +2,9 @@ extends layout
 
 block content
   h1= title
+  if (toShow == null)
+    h2 No instance to update
+  else
   - let houseid = toShow._id
   - let house_number = toShow.house_number
   - let type_of_house = toShow.type_of_house
