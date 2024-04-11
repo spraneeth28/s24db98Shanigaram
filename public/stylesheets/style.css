@@ -11,4 +11,18 @@ a {
   background-color:aquamarine;
   width: 120px;
   }
+
+.houseAttr1{
+  background-color: blue;
+  width: 200px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.houseVal{
+  background-color:  rgb(0, 234, 255);
+  width: 200px;
+  padding: 5px;
+  margin: 5px;
+}
   
