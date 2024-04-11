@@ -5,28 +5,33 @@ block content
   if (toShow == null)
     h2 No instance to update
   else
-  - let houseid = toShow._id
-  - let house_number = toShow.house_number
-  - let type_of_house = toShow.type_of_house
-  - let location = toShow.location
+    - let houseid = toShow._id
+    - let house_number = toShow.house_number
+    - let type_of_house = toShow.type_of_house
+    - let location = toShow.location
 
-  div.row(class='mb-2')
-    div.mr-1 ID is
-    div #{houseid}
-  - let actionid = "/resource/house/" + houseid
-  form(id='HouseForm', action=actionid, method="PUT")
-    div.form-group
-        label.houseAttr(for='house_number') House number
-        input#house_number(type='number', name='house_number')
-    div.form-group
-        label.houseAttr(for='type_of_house') House type
-        input#type_of_house(type='text', name='type_of_house')
-    div.form-group
-        label.houseAttr(for='location') House Location
-        input#location(type='text', name='location')
-        input(type="submit")
+    div.row(class='mb-2')
+      div.mr-1 ID is
+      div #{houseid}
+
+    - let actionid = "/resource/house/" + houseid
+    form(id='houseForm', action= actionid, method="PUT")
+      div.form-group
+        label.houseAttr(for='house_number') House Number
+        input#house_number(type='number', name='house_number', value= house_number)
+
+      div.form-group
+        label.houseAttr(for='type_of_house') House name
+        input#type_of_house(type='text', name='type_of_house', value= type_of_house)
+
+      div.form-group
+        label.houseAttr(for='location') House location
+        input#location(type='text', name='location', value= location)
+
+      input(type="submit")
+
     script.
-      document.forms['HouseForm'].addEventListener('submit', (event) => {
+      document.forms['houseForm'].addEventListener('submit', (event) => {
         event.preventDefault();
         // TODO do something here to show the user that the form is being submitted
         fetch(event.target.action, {
@@ -35,10 +40,10 @@ block content
         }).then((resp) => {
           return resp.json(); // or resp.text() or whatever the server sends
         }).then((body) => {
-          alert("Update succeeded")
-          // TODO handle body
+          alert("Update succeeded");
+          // TODO handle the response body
         }).catch((error) => {
           // TODO handle error
-          alert("Update failed " + error);
+          alert("Update failed: " + error);
         });
       });
