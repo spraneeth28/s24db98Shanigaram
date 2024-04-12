@@ -9,7 +9,7 @@ block content
     div(class="row m-1")
       each item in houses
         - let destination = `dispatch(\"/house/update?id=${item._id}\")`
-        div(class="col-sm-2", class="m-1") House with id #{item.house_id}  #{item.house_number} (#{item.type_of_house}) is located at #{item.location}
+        div(class="row-sm-2", class="m-1") House with number  #{item.house_number} (#{item.type_of_house}) is located at #{item.location}
          button.btn( class="btn-primary ml-1", onclick= destination) Update
   script.
     function dispatch(path){
