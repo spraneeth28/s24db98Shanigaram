@@ -6,11 +6,18 @@ block content
 
   div(class="container-fluid")
 
-    div(class="row")
-      each f, index in houses
-        div(class="col-sm-2", onclick=`buy(${index})` ) #{f.house_number}, #{f.type_of_house}, #{f.location}
-        script.
-          function buy(index)
-          {
-            alert(`you purchased Item: ${index+1}`)
-          }
+    div(class="row m-1")
+      each item in houses
+        - let destination = `dispatch(\"/house/update?id=${item._id}\")`
+        div(class="col-sm-2", class="m-1") House with id #{item.house_id}  #{item.house_number} (#{item.type_of_house}) is located at #{item.location}
+         button.btn( class="btn-primary ml-1", onclick= destination) Update
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }
+
+        //- script.
+        //-   function buy(index)
+        //-   {
+        //-     alert(`you purchased Item: ${index+1}`)
+        //-   }
