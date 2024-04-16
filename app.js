@@ -64,6 +64,15 @@ if (reseed) {recreateDB();}
 
 var app = express();
 
+//lab 13 (part - 2)
+app.use(require('express-session')({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false
+  }));
+  app.use(passport.initialize());
+  app.use(passport.session());
+
 
 require('dotenv').config();
 // const env01 = 'mongodb+srv://spraneeth2801:Nanyjoy@4818777@cluster0.uhlcqxh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
@@ -97,14 +106,7 @@ app.use('/resource', resourceRouter);
 // app.use('/housem', houseModel);
 // app.use('/costume', costumeRouter);
 
-//lab 13 (part - 2)
-app.use(require('express-session')({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: false
-  }));
-  app.use(passport.initialize());
-  app.use(passport.session());
+
 
 // passport config
 // Use the existing connection

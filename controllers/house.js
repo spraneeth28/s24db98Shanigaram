@@ -126,7 +126,7 @@ exports.house_delete = async function(req, res) {
 exports.house_view_one_Page = async function(req, res) {
     console.log("single view for id " + req.query.id)
     try{
-    result = await House.findById(req ? req.query.id : req['query']['id'])
+    result = await House.findById(req.query.id)
     res.render('housedetail',
     { title: 'House Detail', toShow: result });
     }
