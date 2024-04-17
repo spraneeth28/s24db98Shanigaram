@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
   - var houses = results;
-
+  a(class="btn btn-danger" href=`/house/create`) Create
   div(class="container-fluid")
 
     div(class="row m-1")
@@ -11,6 +11,9 @@ block content
         - let destination = `dispatch(\"/house/update?id=${item._id}\")`
         div(class="row-sm-2", class="m-1") House with number  #{item.house_number} (#{item.type_of_house}) is located at #{item.location}
          button.btn( class="btn-primary ml-1", onclick= destination) Update
+
+         a(class="btn btn-warning" href=`/house/delete?id=${item._id}`) Delete
+         a(class="btn btn-secondary" href=`/house/detail?id=${item._id}`) Details
   script.
     function dispatch(path){
       window.location.href=path
